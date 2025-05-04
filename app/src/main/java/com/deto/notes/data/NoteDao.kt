@@ -21,8 +21,8 @@ interface NoteDao {
     suspend fun delete(item: Note)
 
     @Query("SELECT * from notes WHERE content = :content OR title = :title")
-    fun getItem(title: String,content: String)
+    fun getItem(title: String,content: String): Flow<Note?>
 
     @Query("SELECT * from notes")
-    fun getAllItems() : Flow<List<Note>>
+    fun getAllItems(): Flow<List<Note>>
 }
