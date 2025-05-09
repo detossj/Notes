@@ -15,10 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SearchContent(innerPadding: PaddingValues, scrollState: LazyListState) {
+fun SearchContent( scrollState: LazyListState) {
     LazyColumn(
         state = scrollState,
-        contentPadding = innerPadding
     ) {
         item {
             OutlinedTextField(
