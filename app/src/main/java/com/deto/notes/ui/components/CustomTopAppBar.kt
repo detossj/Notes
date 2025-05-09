@@ -1,8 +1,10 @@
 package com.deto.notes.ui.components
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -23,12 +25,14 @@ import kotlin.math.sin
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchTopAppBar(scrollBehavior : TopAppBarScrollBehavior) {
+fun CustomTopAppBar(scrollBehavior : TopAppBarScrollBehavior) {
 
     LargeTopAppBar(
         title = {
-            Text("Notas") },
+            Text("Notas")},
         scrollBehavior = scrollBehavior
     )
+
+
 
 }
