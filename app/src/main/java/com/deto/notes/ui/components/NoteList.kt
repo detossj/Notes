@@ -38,20 +38,20 @@ fun NoteList(innerPadding: PaddingValues, notes: List<Note>) {
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
-            contentPadding = PaddingValues(20.dp),
+            contentPadding = PaddingValues(10.dp),
             modifier = Modifier.fillMaxWidth()
         ) {
             items(notes) {
                 Card(
                     modifier = Modifier
-                        .padding(20.dp)
+                        .padding(5.dp)
                         .clickable { selected = it.id },
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .fillMaxHeight()
-                            .padding(horizontal = 20.dp, vertical = 35.dp),
+                            .padding(horizontal = 20.dp, vertical = 20.dp),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
