@@ -19,16 +19,27 @@ import com.deto.notes.ui.components.SearchContent
 
 
 val notesList = listOf(
-    Note(1, "Nota 1", "Contenido de la nota 1"),
-    Note(2, "Nota 2", "Contenido de la nota 2"),
-    Note(3, "Nota 3", "Contenido de la nota 3"),
-    Note(4, "Nota 4", "Contenido de la nota 4"),
-    Note(5, "Nota 5", "Contenido de la nota 5"),
-    Note(6, "Nota 6", "Contenido de la nota 6"),
-    Note(7, "Nota 7", "Contenido de la nota 7"),
-    Note(8, "Nota 8", "Contenido de la nota 8"),
-    Note(9, "Nota 9", "Contenido de la nota 9"),
-    Note(10, "Nota 10", "Contenido de la nota 10")
+    Note(1, "Lista de compras", "Leche, pan, huevos, queso, café, tomates."),
+    Note(2, "Tarea pendiente", "Terminar el informe mensual antes del viernes."),
+    Note(3, "Idea de negocio", "Tienda online de productos ecológicos y sostenibles."),
+    Note(4, "Receta", "Pasta al pesto: albahaca, ajo, piñones, parmesano y aceite de oliva."),
+    Note(5, "Recordatorio médico", "Cita con el dentista el 15 de mayo a las 10:00 AM."),
+    Note(6, "Libro por leer", "Empieza a leer 'Sapiens' de Yuval Noah Harari."),
+    Note(7, "Cita inspiradora", "“La vida es aquello que te pasa mientras estás ocupado haciendo otros planes.” – John Lennon"),
+    Note(8, "Plan de entrenamiento", "Lunes, miércoles y viernes: correr 30 minutos."),
+    Note(9, "Cumpleaños", "No olvidar el cumpleaños de mamá el 21 de junio."),
+    Note(10, "Películas para ver", "La La Land, Interstellar, El secreto de sus ojos."),
+    Note(11, "Aprender", "Investigar sobre inteligencia artificial y aprendizaje automático."),
+    Note(12, "Proyecto personal", "Diseñar mi sitio web en WordPress este mes."),
+    Note(13, "Reunión", "Reunión con el equipo de diseño el martes a las 3 PM."),
+    Note(14, "Vacaciones soñadas", "Viajar a Japón durante la temporada de sakura."),
+    Note(15, "Lista de deseos", "Bicicleta nueva, cámara réflex, suscripción a un curso online."),
+    Note(16, "Frase motivadora", "No dejes para mañana lo que puedes hacer hoy."),
+    Note(17, "Revisión del coche", "Pedir cita en el taller para la revisión anual."),
+    Note(18, "Contraseñas", "Cambiar contraseñas de redes sociales por seguridad."),
+    Note(19, "Plan de ahorro", "Ahorrar $100 al mes para el fondo de emergencia."),
+    Note(20, "Favoritos", "Café favorito: Flat white. Restaurante: La Trattoria.")
+
 )
 
 
