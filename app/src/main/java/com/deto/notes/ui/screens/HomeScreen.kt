@@ -12,10 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.deto.notes.NotePage
 import com.deto.notes.data.Note
+import com.deto.notes.ui.components.CustomFloatingActionButton
 import com.deto.notes.ui.components.CustomTopAppBar
 import com.deto.notes.ui.components.NoteList
 import com.deto.notes.ui.components.SearchContent
+import kotlin.toString
 
 
 val notesList = listOf(
@@ -53,6 +56,9 @@ fun HomeScreen(Navigation: NavController){
     Scaffold(
         topBar = {
             CustomTopAppBar(scrollBehavior)
+        },
+        floatingActionButton = {
+            CustomFloatingActionButton(navController = Navigation, screen = NotePage)
         },
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { innerPadding ->
