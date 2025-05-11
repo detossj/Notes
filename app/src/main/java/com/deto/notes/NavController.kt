@@ -9,20 +9,20 @@ import com.deto.notes.ui.screens.NoteScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
-object Home
+object HomePage
 
 @Serializable
-object Note
+object NotePage
 
 @Composable
 fun Navigation(){
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Home) {
-        composable<Home> {
+    NavHost(navController = navController, startDestination = HomePage) {
+        composable<HomePage> {
             HomeScreen(navController)
         }
-        composable<Note> {
+        composable<NotePage> {
             NoteScreen(navController)
         }
     }
