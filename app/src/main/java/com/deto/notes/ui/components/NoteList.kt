@@ -19,6 +19,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.deto.notes.data.Note
 
@@ -53,10 +55,17 @@ fun NoteList(innerPadding: PaddingValues, notes: List<Note>) {
                             .fillMaxHeight()
                             .padding(horizontal = 20.dp, vertical = 20.dp),
                         verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.Start
                     ) {
-                        Text(it.title)
-                        Text(it.content)
+                        Text(
+                            text = if(it.title.length > 13) {it.title.take(13) + "..."} else it.title ,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                        Text(
+                            text = if(it.content.length > 60) {it.content.take(60) + "..."} else it.content,
+                            color = Color.Gray
+                        )
                     }
                 }
             }
