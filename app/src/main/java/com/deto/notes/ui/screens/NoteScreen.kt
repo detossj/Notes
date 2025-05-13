@@ -30,6 +30,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.deto.notes.ui.components.CustomOutlinedTextField
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -70,60 +71,10 @@ fun NoteScreen(Navigation: NavController){
                 var title by remember { mutableStateOf("") }
                 var content by remember { mutableStateOf("") }
 
+                CustomOutlinedTextField(title, {title = it},"Título",32)
 
-                OutlinedTextField(
-                    value = title,
-                    onValueChange = { title = it },
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    placeholder = {
-                        Text(
-                            text = "Titulo",
-                            fontSize = 32.sp,
-                            color = Color.Gray
-                        ) },
-                    textStyle = TextStyle(
-                        fontSize = 32.sp,
-                        color = Color.White
-                    ),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedTextColor = Color.White,
-                        unfocusedTextColor = Color.White,
-                        focusedContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent,
-                        focusedBorderColor = Color.Transparent,
-                        unfocusedBorderColor = Color.Transparent
-                    ),
-                    singleLine = false,
-                    maxLines = Int.MAX_VALUE
-                )
+                CustomOutlinedTextField(content, {content = it},"Empiece a escribir",16)
 
-                OutlinedTextField(
-                    value = content,
-                    onValueChange = { content = it },
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    placeholder = {
-                        Text(
-                            text = "Empiece a escribir",
-                            fontSize = 16.sp,
-                            color = Color.Gray
-                        ) },
-                    textStyle = TextStyle(
-                        fontSize = 16.sp,
-                        color = Color.White
-                    ),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedTextColor = Color.White,
-                        unfocusedTextColor = Color.White,
-                        focusedContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent,
-                        focusedBorderColor = Color.Transparent,
-                        unfocusedBorderColor = Color.Transparent
-                    ),
-                    singleLine = false,
-                    maxLines = Int.MAX_VALUE
-                )
             }
 
 
