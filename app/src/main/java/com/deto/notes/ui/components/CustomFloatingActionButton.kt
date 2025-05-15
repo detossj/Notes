@@ -7,11 +7,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
+import com.deto.notes.NotePage
 
 @Composable
-fun CustomFloatingActionButton(navController: NavController, screen : Any) {
+fun CustomFloatingActionButton(navController: NavController) {
     FloatingActionButton(
-        onClick = { navController.navigate(screen) },
+        onClick = { navController.navigate(NotePage()) },
         containerColor = Color.Yellow,
         contentColor = Color.White
     ) {
