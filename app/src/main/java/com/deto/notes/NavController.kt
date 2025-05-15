@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.deto.notes.ui.screens.HomeScreen
 import com.deto.notes.ui.screens.NewNoteScreen
 import kotlinx.serialization.Serializable
@@ -12,7 +13,7 @@ import kotlinx.serialization.Serializable
 object HomePage
 
 @Serializable
-object NotePage
+data class NotePage(val noteId: Int)
 
 @Composable
 fun Navigation(){
@@ -22,8 +23,9 @@ fun Navigation(){
         composable<HomePage> {
             HomeScreen(navController)
         }
-        composable<NotePage> {
-            NewNoteScreen(navController)
+        composable<NotePage> { backStackEntry ->
+            val args = backStackEntry.toRoute<NotePage>()
+            NewNoteScreen(navController, noteId = args.noteId)
         }
     }
 
