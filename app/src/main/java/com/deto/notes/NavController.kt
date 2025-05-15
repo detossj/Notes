@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 object HomePage
 
 @Serializable
-data class NotePage(val noteId: Int)
+data class NotePage(val noteId: Int? = null)
 
 @Composable
 fun Navigation(){

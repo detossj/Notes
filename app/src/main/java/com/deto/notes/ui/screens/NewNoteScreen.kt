@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewNoteScreen(Navigation: NavController, noteId: Int, viewModel: NewNoteViewModel = viewModel(factory = AppViewModelProvider.Factory)){
+fun NewNoteScreen(Navigation: NavController, noteId: Int? = null, viewModel: NewNoteViewModel = viewModel(factory = AppViewModelProvider.Factory)){
 
     val homeViewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
 
