@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.deto.notes.ui.screens.HomeScreen
-import com.deto.notes.ui.screens.NoteScreen
+import com.deto.notes.ui.screens.NewNoteScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -23,7 +23,7 @@ fun Navigation(){
             HomeScreen(navController)
         }
         composable<NotePage> {
-            NoteScreen(navController)
+            NewNoteScreen(navController)
         }
     }
 
