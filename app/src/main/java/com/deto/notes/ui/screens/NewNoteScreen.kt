@@ -15,18 +15,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.deto.notes.data.Note
 import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.components.CustomOutlinedTextField
 import kotlinx.coroutines.launch
@@ -42,6 +39,12 @@ fun NewNoteScreen(Navigation: NavController, noteId: Int, viewModel: NewNoteView
     val scope = rememberCoroutineScope()
 
     val note = noteList.find { it.id == noteId }
+
+    LaunchedEffect(note) {
+        note?.let {
+            viewModel.updateUiState(it.toItemDetails())
+        }
+    }
 
     //  Manejo del botón "Atras" del sistema
     BackHandler {
@@ -95,9 +98,9 @@ fun NewNoteScreen(Navigation: NavController, noteId: Int, viewModel: NewNoteView
                    CustomOutlinedTextField(viewModel.newNoteUiState.newNote.content, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(content = it)) },"Empiece a escribir",16)
                }
                else {
-                   CustomOutlinedTextField(note.title, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(title = it)) },note.title,32)
+                   CustomOutlinedTextField(viewModel.newNoteUiState.newNote.title, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(title = it)) },note.title,32)
 
-                   CustomOutlinedTextField(note.content, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(content = it)) },note.content,16)
+                   CustomOutlinedTextField(viewModel.newNoteUiState.newNote.content, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(content = it)) },note.content,16)
                }
 
             }
