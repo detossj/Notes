@@ -1,5 +1,6 @@
 package com.deto.notes.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,16 +18,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.components.CustomOutlinedTextField
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewNoteScreen(Navigation: NavController){
+fun NewNoteScreen(Navigation: NavController, viewModel: NewNoteViewModel = viewModel(factory = AppViewModelProvider.Factory)){
+
+    val scope = rememberCoroutineScope()
+
+    //  Manejo del botón "Atras" del sistema
+    BackHandler {
+        scope.launch {
+            viewModel.saveItem()
+            Navigation.popBackStack()
+        }
+    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -34,7 +49,12 @@ fun NewNoteScreen(Navigation: NavController){
             TopAppBar(
                 title = {
                     Button(
-                        onClick = {},
+                        onClick = {
+                            scope.launch {
+                                viewModel.saveItem()
+                                Navigation.popBackStack()
+                            }
+                        },
                         contentPadding = PaddingValues(0.dp),
                         colors = ButtonColors(
                             contentColor = Color.White,
@@ -60,12 +80,10 @@ fun NewNoteScreen(Navigation: NavController){
             Column(
                 modifier = Modifier.fillMaxSize().padding(16.dp)
             ) {
-                var title by remember { mutableStateOf("") }
-                var content by remember { mutableStateOf("") }
 
-                CustomOutlinedTextField(title, {title = it},"Título",32)
+                CustomOutlinedTextField(viewModel.newNoteUiState.newNote.title, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(title = it)) },"Título",32)
 
-                CustomOutlinedTextField(content, {content = it},"Empiece a escribir",16)
+                CustomOutlinedTextField(viewModel.newNoteUiState.newNote.content, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(content = it)) },"Empiece a escribir",16)
 
             }
 
