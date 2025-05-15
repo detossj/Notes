@@ -22,12 +22,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.deto.notes.NotePage
 import com.deto.notes.data.Note
 
-@Composable
-fun NoteList(innerPadding: PaddingValues, notes: List<Note>) {
 
-    var selected by remember { mutableIntStateOf(0) }
+@Composable
+fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: List<Note>) {
+
 
     Column(
         modifier = Modifier
@@ -47,7 +49,7 @@ fun NoteList(innerPadding: PaddingValues, notes: List<Note>) {
                 Card(
                     modifier = Modifier
                         .padding(5.dp)
-                        .clickable { selected = it.id },
+                        .clickable { navController.navigate(NotePage(it.id)) },
                 ) {
                     Column(
                         modifier = Modifier
