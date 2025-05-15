@@ -45,7 +45,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
 
         Column(modifier = Modifier.padding(innerPadding)) {
             SearchContent(scrollState)
-            NoteList(PaddingValues(0.dp), noteList)
+            NoteList(Navigation,PaddingValues(0.dp), noteList)
         }
     }
 
