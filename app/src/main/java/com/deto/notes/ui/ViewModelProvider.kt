@@ -6,11 +6,15 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.deto.notes.Notes
 import com.deto.notes.ui.screens.HomeViewModel
+import com.deto.notes.ui.screens.NewNoteViewModel
 
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         initializer {
             HomeViewModel(App().container.noteRepository)
+        }
+        initializer {
+            NewNoteViewModel(App().container.noteRepository)
         }
     }
 }
