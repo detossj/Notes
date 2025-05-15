@@ -38,7 +38,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
             CustomTopAppBar(scrollBehavior)
         },
         floatingActionButton = {
-            CustomFloatingActionButton(navController = Navigation, screen = NotePage)
+            CustomFloatingActionButton(navController = Navigation)
         },
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { innerPadding ->
