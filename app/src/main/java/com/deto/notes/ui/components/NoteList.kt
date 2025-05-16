@@ -37,7 +37,7 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
             .fillMaxWidth()
             .fillMaxHeight(),
         verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.Start
     ) {
 
         LazyVerticalGrid(
