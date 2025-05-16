@@ -19,7 +19,12 @@ class NewNoteViewModel(private val noteRepository: NoteRepository) : ViewModel()
 
     suspend fun saveItem() {
         if(validateInput()){
-            noteRepository.insertNote(newNoteUiState.newNote.toElement())
+            val note = newNoteUiState.newNote.toElement()
+            if (note.id != 0) {
+                noteRepository.updateNote(note)
+            } else {
+                noteRepository.insertNote(note)
+            }
         }
     }
 
