@@ -11,18 +11,27 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.deto.notes.data.Note
 
 @Composable
-fun SearchContent( scrollState: LazyListState) {
+fun SearchContent( scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, notes: List<Note>) {
+
+    var notesFilter by remember { mutableStateOf("") }
+
     LazyColumn(
         state = scrollState,
     ) {
         item {
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
+                value = notesFilter,
+                onValueChange = {notesFilter = it},
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -39,4 +48,10 @@ fun SearchContent( scrollState: LazyListState) {
 
 
     }
+
+    var notesListFilter = notes.filter {
+        it.title.contains(notesFilter, ignoreCase = true) || it.content.contains(notesFilter, ignoreCase = true)
+    }
+
+    NoteList(navController, innerPadding, notesListFilter)
 }
