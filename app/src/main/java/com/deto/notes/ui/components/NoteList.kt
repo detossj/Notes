@@ -28,7 +28,7 @@ import com.deto.notes.data.Note
 
 
 @Composable
-fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: List<Note>) {
+fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: List<Note>, notesFilter: String) {
 
 
     Column(
@@ -74,3 +74,5 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
         }
     }
 }
+
+
