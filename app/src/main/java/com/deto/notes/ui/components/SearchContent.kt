@@ -53,5 +53,5 @@ fun SearchContent( scrollState: LazyListState, navController: NavController, inn
         it.title.contains(notesFilter, ignoreCase = true) || it.content.contains(notesFilter, ignoreCase = true)
     }
 
-    NoteList(navController, innerPadding, notesListFilter)
+    NoteList(navController, innerPadding, notesListFilter,notesFilter)
 }
