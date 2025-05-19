@@ -20,7 +20,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.deto.notes.NotePage
@@ -60,13 +64,13 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
                         horizontalAlignment = Alignment.Start
                     ) {
                         Text(
-                            text = if(it.title.length > 13) {it.title.take(13) + "..."} else it.title ,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White
+                            text = highlightMatch(it.title, notesFilter, Color.Yellow),
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = if(it.content.length > 60) {it.content.take(60) + "..."} else it.content,
-                            color = Color.Gray
+                            text = highlightMatch(it.content, notesFilter, Color.Yellow),
+                            color = Color.Gray,
                         )
                     }
                 }
@@ -74,5 +78,40 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
         }
     }
 }
+
+@Composable
+fun highlightMatch(text: String, notesFilter: String, highlightColor: Color): AnnotatedString {
+
+    // AnnotatedString que permite aplicar estilos a partes específicas del texto
+    return buildAnnotatedString {
+
+        // Si el notesFilter está vacío, se retorna el texto completo sin resaltar
+        if (notesFilter.isEmpty()) {
+            append(text)
+            return@buildAnnotatedString
+        }
+
+        // Busca la posición de la primera aparición del query en el texto (ignorando mayúsculas/minúsculas)
+        val index = text.indexOf(notesFilter, ignoreCase = true)
+
+        // Si no hay coincidencia, agrega el texto completo sin ningún estilo especial
+        if (index == -1) {
+            append(text)
+        } else {
+
+            //Agrega la parte del texto que va antes de la coincidencia(notesFilter) y sin resaltar
+            append(text.substring(0, index))
+
+            //Agrega la parte coincidente con el notesFilter y se cambia de color
+            withStyle(style = SpanStyle(color = highlightColor)) {
+                append(text.substring(index, index + notesFilter.length))
+            }
+
+            //Agrega el resto del texto después de la coincidencia(notesFilter) y sin resaltar
+            append(text.substring(index + notesFilter.length))
+        }
+    }
+}
+
 
 
