@@ -63,13 +63,25 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.Start
                     ) {
+                        val titlePreview = if (it.title.length > 13) {
+                            it.title.take(13) + "..."
+                        } else {
+                            it.title
+                        }
+
+                        val contentPreview = if (it.content.length > 60) {
+                            it.content.take(60) + "..."
+                        } else {
+                            it.content
+                        }
+
                         Text(
-                            text = highlightMatch(it.title, notesFilter, Color.Yellow),
+                            text = highlightMatch(titlePreview, notesFilter, Color.Yellow),
                             color = Color.White,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = highlightMatch(it.content, notesFilter, Color.Yellow),
+                            text = highlightMatch(contentPreview, notesFilter, Color.Yellow),
                             color = Color.Gray,
                         )
                     }
