@@ -22,7 +22,7 @@ import com.deto.notes.ui.components.CustomTopAppBar
 import com.deto.notes.ui.components.NoteList
 import com.deto.notes.ui.components.SearchContent
 import androidx.compose.runtime.getValue
-
+import com.deto.notes.ui.components.CustomBottomAppBar
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -36,6 +36,9 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
     Scaffold(
         topBar = {
             CustomTopAppBar(scrollBehavior)
+        },
+        bottomBar = {
+            CustomBottomAppBar()
         },
         floatingActionButton = {
             CustomFloatingActionButton(navController = Navigation)
