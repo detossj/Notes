@@ -25,11 +25,11 @@ import kotlin.math.sin
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomTopAppBar(scrollBehavior : TopAppBarScrollBehavior) {
+fun CustomTopAppBar(scrollBehavior : TopAppBarScrollBehavior, title: String) {
 
     LargeTopAppBar(
         title = {
-            Text("Notas")},
+            Text(title)},
         scrollBehavior = scrollBehavior
     )
 
