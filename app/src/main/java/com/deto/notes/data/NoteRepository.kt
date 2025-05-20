@@ -10,8 +10,6 @@ interface NoteRepository {
 
     suspend fun deleteNote(note: Note)
 
-    fun getNoteStream(title: String, content: String): Flow<Note?>
-
     fun getAllNotesStream(): Flow<List<Note>>
 
 }

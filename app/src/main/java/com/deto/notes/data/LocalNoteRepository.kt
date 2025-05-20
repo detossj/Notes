@@ -9,7 +9,5 @@ class LocalNoteRepository(private val itemDao : NoteDao) : NoteRepository {
 
     override suspend fun deleteNote(note: Note) = itemDao.delete(note)
 
-    override fun getNoteStream(title: String, content: String): Flow<Note?> = itemDao.getItem(title,content)
-
     override fun getAllNotesStream(): Flow<List<Note>> = itemDao.getAllItems()
 }
