@@ -19,9 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.deto.notes.HomePage
+import com.deto.notes.SecondPage
 
 @Composable
-fun CustomBottomAppBar() {
+fun CustomBottomAppBar(Navigation: NavController) {
 
     BottomAppBar(
         modifier = Modifier
@@ -35,7 +38,9 @@ fun CustomBottomAppBar() {
         ) {
 
             Button(
-                onClick = {},
+                onClick = {
+                    Navigation.navigate(HomePage)
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
                     contentColor = Color.White
@@ -55,7 +60,9 @@ fun CustomBottomAppBar() {
             }
 
             Button(
-                onClick = {},
+                onClick = {
+                    Navigation.navigate(SecondPage)
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
                     contentColor = Color.White
