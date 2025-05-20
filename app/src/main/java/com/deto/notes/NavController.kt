@@ -7,10 +7,14 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.deto.notes.ui.screens.HomeScreen
 import com.deto.notes.ui.screens.NewNoteScreen
+import com.deto.notes.ui.screens.SecondScreen
 import kotlinx.serialization.Serializable
 
 @Serializable
 object HomePage
+
+@Serializable
+object SecondPage
 
 @Serializable
 data class NotePage(val noteId: Int? = null)
@@ -22,6 +26,9 @@ fun Navigation(){
     NavHost(navController = navController, startDestination = HomePage) {
         composable<HomePage> {
             HomeScreen(navController)
+        }
+        composable<SecondPage> {
+            SecondScreen(navController)
         }
         composable<NotePage> { backStackEntry ->
             val args = backStackEntry.toRoute<NotePage>()
