@@ -35,13 +35,13 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
 
     Scaffold(
         topBar = {
-            CustomTopAppBar(scrollBehavior)
+            CustomTopAppBar(scrollBehavior,"Notas")
         },
         bottomBar = {
-            CustomBottomAppBar()
+            CustomBottomAppBar(Navigation)
         },
         floatingActionButton = {
-            CustomFloatingActionButton(navController = Navigation)
+            CustomFloatingActionButton(Navigation)
         },
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { innerPadding ->
