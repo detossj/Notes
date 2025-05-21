@@ -21,7 +21,7 @@ import androidx.navigation.NavController
 import com.deto.notes.data.Note
 
 @Composable
-fun SearchContent( scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, notes: List<Note>) {
+fun SearchNote( scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, notes: List<Note>) {
 
     var notesFilter by remember { mutableStateOf("") }
 

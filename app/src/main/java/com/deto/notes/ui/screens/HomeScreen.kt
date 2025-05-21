@@ -14,15 +14,12 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.deto.notes.NotePage
-import com.deto.notes.data.Note
 import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.components.CustomFloatingActionButton
 import com.deto.notes.ui.components.CustomTopAppBar
-import com.deto.notes.ui.components.NoteList
-import com.deto.notes.ui.components.SearchContent
 import androidx.compose.runtime.getValue
 import com.deto.notes.ui.components.CustomBottomAppBar
+import com.deto.notes.ui.components.SearchNote
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,7 +44,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
     ) { innerPadding ->
 
         Column(modifier = Modifier.padding(innerPadding)) {
-            SearchContent(scrollState,Navigation, PaddingValues(0.dp), noteList)
+            SearchNote(scrollState,Navigation, PaddingValues(0.dp), noteList)
 
         }
     }
