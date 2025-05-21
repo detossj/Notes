@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlin.math.sin
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,7 +30,10 @@ fun CustomTopAppBar(scrollBehavior : TopAppBarScrollBehavior, title: String) {
 
     LargeTopAppBar(
         title = {
-            Text(title)},
+            Text(
+                text = title,
+                fontSize = 32.sp
+            )},
         scrollBehavior = scrollBehavior
     )
 
