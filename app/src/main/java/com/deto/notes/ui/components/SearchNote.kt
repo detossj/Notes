@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -42,7 +43,8 @@ fun SearchNote( scrollState: LazyListState, navController: NavController, innerP
                         Icons.Default.Search,
                         contentDescription = "Buscar notas"
                     )
-                }
+                },
+                shape = RoundedCornerShape(30.dp)
             )
         }
 
