@@ -10,7 +10,7 @@ import androidx.navigation.NavController
 import com.deto.notes.NotePage
 
 @Composable
-fun CustomFloatingActionButton(navController: NavController) {
+fun CustomFloatingActionButtonHome(navController: NavController) {
     FloatingActionButton(
         onClick = { navController.navigate(NotePage()) },
         containerColor = Color.Yellow,

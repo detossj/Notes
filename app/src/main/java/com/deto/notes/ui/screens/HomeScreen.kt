@@ -15,10 +15,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.deto.notes.ui.AppViewModelProvider
-import com.deto.notes.ui.components.CustomFloatingActionButton
 import com.deto.notes.ui.components.CustomTopAppBar
 import androidx.compose.runtime.getValue
 import com.deto.notes.ui.components.CustomBottomAppBar
+import com.deto.notes.ui.components.CustomFloatingActionButtonHome
 import com.deto.notes.ui.components.SearchNote
 
 
@@ -38,7 +38,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
             CustomBottomAppBar(Navigation)
         },
         floatingActionButton = {
-            CustomFloatingActionButton(Navigation)
+            CustomFloatingActionButtonHome(Navigation)
         },
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { innerPadding ->
