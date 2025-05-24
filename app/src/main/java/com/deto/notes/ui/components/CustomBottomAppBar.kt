@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
+import androidx.compose.runtime.getValue
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -20,19 +21,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.deto.notes.HomePage
 import com.deto.notes.SecondPage
 
 @Composable
 fun CustomBottomAppBar(Navigation: NavController) {
 
+    val currentBackStackEntry by Navigation.currentBackStackEntryAsState()
+    val currentRoute = currentBackStackEntry?.destination?.route
+
     BottomAppBar(
         modifier = Modifier
             .fillMaxWidth()
     ) {
         Row (
-            modifier = Modifier.fillMaxWidth()
-               ,
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -41,9 +45,12 @@ fun CustomBottomAppBar(Navigation: NavController) {
                 onClick = {
                     Navigation.navigate(HomePage)
                 },
+                enabled = currentRoute != HomePage::class.qualifiedName,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
-                    contentColor = Color.White
+                    contentColor = Color.White,
+                    disabledContainerColor = Color.Transparent,
+                    disabledContentColor = Color.White
                 )
             ) {
                 Column(
@@ -63,9 +70,12 @@ fun CustomBottomAppBar(Navigation: NavController) {
                 onClick = {
                     Navigation.navigate(SecondPage)
                 },
+                enabled = currentRoute != SecondPage::class.qualifiedName,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
-                    contentColor = Color.White
+                    contentColor = Color.White,
+                    disabledContainerColor = Color.Transparent,
+                    disabledContentColor = Color.White
                 )
             ) {
                 Column(
