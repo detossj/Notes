@@ -25,17 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.deto.notes.data.Task
 
-val taskList = mutableListOf<Task>(
-    Task(1,"Sacar la ropa",true),
-    Task(2,"Sacar la ropa",true),
-    Task(3,"Sacar la ropa",true),
-    Task(4,"Sacar la ropa",true),
-    Task(5,"Sacar la ropa",true),
-    Task(6,"Sacar la ropa",true)
-)
+
 
 @Composable
-fun TaskList(innerPadding: PaddingValues) {
+fun TaskList(innerPadding: PaddingValues, taskList: List<Task>) {
 
 
     Column(
