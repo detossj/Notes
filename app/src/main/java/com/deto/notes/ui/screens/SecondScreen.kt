@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,24 +17,25 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.deto.notes.data.Task
+import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.components.CustomBottomAppBar
 import com.deto.notes.ui.components.CustomFloatingActionButtonSecond
 import com.deto.notes.ui.components.CustomModalBottomSheet
 import com.deto.notes.ui.components.CustomTopAppBar
 import com.deto.notes.ui.components.TaskList
+import com.deto.tasks.ui.screens.SecondViewModel
 import kotlinx.coroutines.launch
 
-var taskList = mutableListOf<Task>(
-    Task(1,"Sacar la ropa",true),
-    Task(2,"Ir a comprar pan",true),
-)
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SecondScreen(Navigation: NavController) {
+fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewModel(factory = AppViewModelProvider.Factory) ) {
 
+    val taskList by viewModel.taskList.collectAsState(initial = emptyList())
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val scope = rememberCoroutineScope()
