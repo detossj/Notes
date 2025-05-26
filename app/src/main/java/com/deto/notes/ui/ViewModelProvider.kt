@@ -8,6 +8,8 @@ import com.deto.notes.Notes
 import com.deto.notes.ui.screens.HomeViewModel
 import com.deto.notes.ui.screens.NewNoteViewModel
 
+import com.deto.tasks.ui.screens.SecondViewModel
+
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         initializer {
@@ -15,6 +17,9 @@ object AppViewModelProvider {
         }
         initializer {
             NewNoteViewModel(App().container.noteRepository)
+        }
+        initializer {
+            SecondViewModel(App().container.taskRepository)
         }
     }
 }
