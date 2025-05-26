@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 @Database(entities = [Note::class, Task::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun noteDao(): NoteDao
+    abstract fun taskDao(): TaskDao
 
     companion object {
 
@@ -19,7 +20,7 @@ abstract class AppDatabase : RoomDatabase(){
 
         fun getDatabase(context: Context): AppDatabase {
             return Instance ?: synchronized(this) {
-                Room.databaseBuilder(context, AppDatabase::class.java, "App_database")
+                Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "App_database")
                     .build()
                     .also { Instance = it }
             }
