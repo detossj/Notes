@@ -3,6 +3,7 @@ package com.deto.notes.ui.screens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
@@ -25,6 +26,7 @@ import com.deto.notes.ui.components.CustomBottomAppBar
 import com.deto.notes.ui.components.CustomFloatingActionButtonSecond
 import com.deto.notes.ui.components.CustomModalBottomSheet
 import com.deto.notes.ui.components.CustomTopAppBar
+import com.deto.notes.ui.components.SearchTask
 import com.deto.notes.ui.components.TaskList
 import com.deto.tasks.ui.screens.SecondViewModel
 import kotlinx.coroutines.launch
@@ -39,6 +41,7 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val scope = rememberCoroutineScope()
+    val scrollState = rememberLazyListState()
 
     var showBottomSheet by remember { mutableStateOf(false) }
 
@@ -64,7 +67,7 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            TaskList(PaddingValues(0.dp), taskList)
+            SearchTask(scrollState, Navigation, PaddingValues(0.dp),taskList)
         }
     }
 }
