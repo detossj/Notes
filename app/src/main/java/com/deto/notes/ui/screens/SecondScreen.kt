@@ -43,9 +43,17 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
     val scope = rememberCoroutineScope()
     val scrollState = rememberLazyListState()
 
+
     var showBottomSheet by remember { mutableStateOf(false) }
 
-    CustomModalBottomSheet(showBottomSheet, scope, bottomSheetState, { showBottomSheet = false })
+    CustomModalBottomSheet(
+        viewModel.newTaskUiState.newTask.title,
+        { viewModel.updateUiState(viewModel.newTaskUiState.newTask.copy(title = it)) },
+        "Nueva Tarea",
+        showBottomSheet,
+        scope,
+        bottomSheetState,
+        { showBottomSheet = false })
 
     Scaffold(
         topBar = {
