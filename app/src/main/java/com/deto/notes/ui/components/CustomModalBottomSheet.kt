@@ -26,7 +26,8 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomModalBottomSheet(showBottomSheet: Boolean, scope: CoroutineScope, bottomSheetState: SheetState, onDismiss: () -> Unit, viewModel: SecondViewModel = viewModel(factory = AppViewModelProvider.Factory)) {
+fun CustomModalBottomSheet(value: String, onValueChange: (String) -> Unit, placeholder: String, showBottomSheet: Boolean, scope: CoroutineScope, bottomSheetState: SheetState, onDismiss: () -> Unit, viewModel: SecondViewModel = viewModel(factory = AppViewModelProvider.Factory)) {
+
     var error by remember { mutableStateOf(false) }
 
     if (showBottomSheet) {
@@ -42,18 +43,16 @@ fun CustomModalBottomSheet(showBottomSheet: Boolean, scope: CoroutineScope, bott
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 CustomOutlinedTextField(
-                    value = viewModel.newTaskUiState.newTask.title,
-                    onValueChange = {
-                        viewModel.updateUiState(viewModel.newTaskUiState.newTask.copy(title = it))
-                        error = it.isBlank() },
-                    "Nueva Tarea",
+                    value = value,
+                    onValueChange = onValueChange ,
+                    placeholder,
                     16
                 )
 
                 Button(
                     onClick = {
 
-                        error = viewModel.newTaskUiState.newTask.title.isBlank()
+                        error = value.isBlank()
                         if (!error) {
                             scope.launch {
                                 viewModel.saveItem()
