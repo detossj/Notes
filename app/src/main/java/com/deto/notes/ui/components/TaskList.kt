@@ -20,15 +20,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.deto.notes.data.Task
 
 
 
 @Composable
-fun TaskList(innerPadding: PaddingValues, taskList: List<Task>) {
+fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList: List<Task>, taskFilter: String) {
 
 
     Column(
@@ -65,7 +67,7 @@ fun TaskList(innerPadding: PaddingValues, taskList: List<Task>) {
                         )
 
                         Text(
-                            text = it.title,
+                            text = highlightMatch(it.title,taskFilter, Color.Yellow),
                             modifier = Modifier.padding(start = 8.dp),
                             fontWeight = FontWeight.Bold
                         )
