@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.deto.notes.data.Task
 import com.deto.notes.data.TaskRepository
+import com.deto.notes.ui.screens.toElement
 import kotlin.Int
 
 
@@ -23,7 +24,12 @@ class SecondViewModel(private val taskRepository: TaskRepository) : ViewModel() 
 
     suspend fun saveItem() {
         if(validateInput()){
-            taskRepository.insertTask(newTaskUiState.newTask.toTask())
+            val task = newTaskUiState.newTask.toTask()
+            if (task.id != 0) {
+                taskRepository.updateTask(task)
+            } else {
+                taskRepository.insertTask(task)
+            }
         }
     }
 
