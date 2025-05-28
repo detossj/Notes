@@ -29,6 +29,7 @@ import com.deto.notes.ui.components.CustomTopAppBar
 import com.deto.notes.ui.components.SearchTask
 import com.deto.notes.ui.components.TaskList
 import com.deto.tasks.ui.screens.SecondViewModel
+import com.deto.tasks.ui.screens.toItemDetails
 import kotlinx.coroutines.launch
 
 
@@ -42,8 +43,6 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val scope = rememberCoroutineScope()
     val scrollState = rememberLazyListState()
-
-
     var showBottomSheet by remember { mutableStateOf(false) }
 
     CustomModalBottomSheet(
@@ -53,7 +52,11 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
         showBottomSheet,
         scope,
         bottomSheetState,
-        { showBottomSheet = false })
+        {
+            showBottomSheet = false
+            viewModel.clearTask()
+        }
+    )
 
     Scaffold(
         topBar = {
@@ -66,6 +69,7 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
             CustomFloatingActionButtonSecond(
                 onClick = {
                     scope.launch {
+                        viewModel.clearTask()
                         showBottomSheet = true
                         bottomSheetState.show()
                     }
@@ -75,7 +79,19 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            SearchTask(scrollState, Navigation, PaddingValues(0.dp),taskList)
+            SearchTask(
+                scrollState,
+                Navigation,
+                PaddingValues(0.dp),
+                taskList,
+                onTaskClick = { task ->
+                    scope.launch {
+                        viewModel.updateUiState(task.toItemDetails())
+                        showBottomSheet = true
+                        bottomSheetState.show()
+                    }
+                }
+            )
         }
     }
 }
