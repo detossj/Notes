@@ -33,6 +33,10 @@ class SecondViewModel(private val taskRepository: TaskRepository) : ViewModel() 
         }
     }
 
+    fun clearTask() {
+        newTaskUiState = NewTaskUIState()
+    }
+
     private fun validateInput(uiState: NewTask = newTaskUiState.newTask) : Boolean {
         return with(uiState) {
             title.isNotBlank()
