@@ -17,6 +17,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,20 +34,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.deto.notes.data.Task
 import com.deto.notes.ui.AppViewModelProvider
+import com.deto.notes.ui.screens.toItemDetails
 import com.deto.tasks.ui.screens.SecondViewModel
+import com.deto.tasks.ui.screens.toItemDetails
 import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList: List<Task>, taskFilter: String,viewModel: SecondViewModel = viewModel(factory = AppViewModelProvider.Factory)) {
+fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList: List<Task>, taskFilter: String, onTaskClick: (Task)-> Unit) {
 
-    val taskList by viewModel.taskList.collectAsState(initial = emptyList())
-    var showBottomSheet by remember { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
-    val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-
-    //val task = taskList.find { it.id }
 
 
 
@@ -62,20 +59,15 @@ fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList
             columns = GridCells.Fixed(1),
             contentPadding = PaddingValues(10.dp)
         ) {
-            items(taskList) {
+            items(taskList) { task->
 
 
 
-                var isChecked by remember { mutableStateOf(it.completed) }
                 Card(
                     modifier = Modifier
                         .padding(5.dp)
                         .clickable {
-                            scope.launch {
-                                showBottomSheet = true
-                                bottomSheetState.show()
-                            }
-
+                            onTaskClick(task)
                         }
                 ) {
                     Row(
@@ -86,14 +78,14 @@ fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList
                     ) {
 
                         Checkbox(
-                            checked = it.completed,
+                            checked = task.completed,
                             onCheckedChange = {
-                                isChecked = it
+                                //
                             }
                         )
 
                         Text(
-                            text = highlightMatch(it.title, taskFilter, Color.Yellow),
+                            text = highlightMatch(task.title, taskFilter, Color.Yellow),
                             modifier = Modifier.padding(start = 8.dp),
                             fontWeight = FontWeight.Bold
                         )
