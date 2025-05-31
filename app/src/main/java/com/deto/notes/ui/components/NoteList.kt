@@ -26,6 +26,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.deto.notes.NotePage
 import com.deto.notes.data.Note
@@ -83,6 +84,11 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
                         Text(
                             text = highlightMatch(contentPreview, notesFilter, Color.Yellow),
                             color = Color.Gray,
+                        )
+                        Text(
+                            text = it.date,
+                            color = Color.Gray,
+                            fontSize = 14.sp
                         )
                     }
                 }
