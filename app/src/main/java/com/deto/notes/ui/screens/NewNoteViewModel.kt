@@ -6,6 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.deto.notes.data.Note
 import com.deto.notes.data.NoteRepository
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class NewNoteViewModel(private val noteRepository: NoteRepository) : ViewModel() {
 
@@ -44,14 +47,14 @@ data class NewNote(
     val id: Int = 0,
     val title: String = "",
     val content: String = "",
-    //val date: LocalDateTime
+    val date: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("d 'de' MMMM h:mm a", Locale("es", "ES")))
 )
 
 fun NewNote.toElement(): Note = Note(
     id = id,
     title = title,
     content = content,
-    //val date: LocalDateTime
+    date =  date
 )
 
 fun Note.toItemUiState(isEntryValid: Boolean = false): NewNoteUIState = NewNoteUIState(
@@ -63,5 +66,5 @@ fun Note.toItemDetails(): NewNote = NewNote(
     id = id,
     title = title,
     content = content,
-    //val date: LocalDateTime
+    date =  date
 )
