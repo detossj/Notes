@@ -23,7 +23,7 @@ import com.deto.notes.data.Note
 import com.deto.notes.data.Task
 
 @Composable
-fun SearchTask(scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, tasks: List<Task>, onTaskClick: (Task) -> Unit){
+fun SearchTask(scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, tasks: List<Task>, onTaskClick: (Task) -> Unit, onTaskCheckChange: (Task) -> Unit){
 
     var tasksFilter by remember { mutableStateOf("") }
 
@@ -56,5 +56,5 @@ fun SearchTask(scrollState: LazyListState, navController: NavController, innerPa
         it.title.contains(tasksFilter, ignoreCase = true)
     }
 
-    TaskList(navController,innerPadding,taskListFilter,tasksFilter,onTaskClick)
+    TaskList(navController,innerPadding,taskListFilter,tasksFilter,onTaskClick,onTaskCheckChange)
 }
