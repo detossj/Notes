@@ -29,10 +29,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.deto.notes.R
 import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.components.CustomOutlinedTextField
 import kotlinx.coroutines.launch
@@ -109,7 +111,12 @@ fun NewNoteScreen(Navigation: NavController, noteId: Int? = null, viewModel: New
             ) {
 
                if(note == null) {
-                   CustomOutlinedTextField(viewModel.newNoteUiState.newNote.title, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(title = it)) },"Título",24)
+                   CustomOutlinedTextField(
+                       viewModel.newNoteUiState.newNote.title,
+                       { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(title = it)) },
+                       stringResource(R.string.newnote_title_placeholder),
+                       24
+                   )
 
                    Text(
                        modifier = Modifier
@@ -121,10 +128,19 @@ fun NewNoteScreen(Navigation: NavController, noteId: Int? = null, viewModel: New
 
                    )
 
-                   CustomOutlinedTextField(viewModel.newNoteUiState.newNote.content, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(content = it)) },"Empiece a escribir",16)
+                   CustomOutlinedTextField(
+                       viewModel.newNoteUiState.newNote.content,
+                       { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(content = it)) },
+                       stringResource(R.string.newnote_content_placeholder),
+                       16
+                   )
                }
                else {
-                   CustomOutlinedTextField(viewModel.newNoteUiState.newNote.title, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(title = it)) },note.title,24)
+                   CustomOutlinedTextField(
+                       viewModel.newNoteUiState.newNote.title,
+                       { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(title = it)) },note.title,
+                       24
+                   )
 
                    Text(
                        modifier = Modifier
@@ -135,7 +151,12 @@ fun NewNoteScreen(Navigation: NavController, noteId: Int? = null, viewModel: New
                        color = Color.Gray
                    )
 
-                   CustomOutlinedTextField(viewModel.newNoteUiState.newNote.content, { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(content = it)) },note.content,16)
+                   CustomOutlinedTextField(
+                       viewModel.newNoteUiState.newNote.content,
+                       { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(content = it)) }
+                       ,note.content,
+                       16
+                   )
                }
 
             }
