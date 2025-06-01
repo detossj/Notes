@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -42,7 +43,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList: List<Task>, taskFilter: String, onTaskClick: (Task)-> Unit) {
+fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList: List<Task>, taskFilter: String, onTaskClick: (Task)-> Unit, onTaskCheckChange: (Task) -> Unit) {
 
 
 
@@ -80,14 +81,24 @@ fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList
                         Checkbox(
                             checked = task.completed,
                             onCheckedChange = {
-                                //
+                               onTaskCheckChange(task)
+                            },
+                            colors = if(task.completed) {
+                                CheckboxDefaults.colors(
+                                    checkedColor = Color.Gray,
+                                    checkmarkColor = Color.DarkGray,
+                                    uncheckedColor = Color.LightGray
+                                )
+                            } else {
+                                CheckboxDefaults.colors()
                             }
                         )
 
                         Text(
                             text = highlightMatch(task.title, taskFilter, Color.Yellow),
                             modifier = Modifier.padding(start = 8.dp),
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            color = if(task.completed) Color.Gray else Color.White
                         )
 
                     }
