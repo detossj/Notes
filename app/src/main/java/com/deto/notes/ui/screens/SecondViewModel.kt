@@ -4,9 +4,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.deto.notes.data.Task
 import com.deto.notes.data.TaskRepository
 import com.deto.notes.ui.screens.toElement
+import kotlinx.coroutines.launch
 import kotlin.Int
 
 
@@ -40,6 +42,14 @@ class SecondViewModel(private val taskRepository: TaskRepository) : ViewModel() 
     private fun validateInput(uiState: NewTask = newTaskUiState.newTask) : Boolean {
         return with(uiState) {
             title.isNotBlank()
+        }
+    }
+
+    fun toggleTaskCompletion(task: Task){
+        val updatedTask = task.copy(completed = !task.completed)
+
+        viewModelScope.launch {
+            taskRepository.updateTask(updatedTask)
         }
     }
 
