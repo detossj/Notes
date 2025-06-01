@@ -36,7 +36,6 @@ fun SearchNote( scrollState: LazyListState, navController: NavController, innerP
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                label = { Text("Buscar notas") },
                 singleLine = true,
                 leadingIcon = {
                     Icon(
