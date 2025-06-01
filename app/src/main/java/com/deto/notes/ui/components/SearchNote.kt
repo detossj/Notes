@@ -17,8 +17,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.deto.notes.R
 import com.deto.notes.data.Note
 
 @Composable
@@ -43,6 +45,7 @@ fun SearchNote( scrollState: LazyListState, navController: NavController, innerP
                         contentDescription = "Buscar notas"
                     )
                 },
+                placeholder = { Text(text = stringResource(R.string.search_placeholder)) },
                 shape = RoundedCornerShape(30.dp)
             )
         }
