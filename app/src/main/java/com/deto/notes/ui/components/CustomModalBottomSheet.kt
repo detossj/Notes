@@ -15,8 +15,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.deto.notes.R
 import com.deto.notes.data.Task
 import com.deto.notes.ui.AppViewModelProvider
 import com.deto.tasks.ui.screens.SecondViewModel
@@ -65,7 +67,7 @@ fun CustomModalBottomSheet(value: String, onValueChange: (String) -> Unit, place
                     },
                     modifier = Modifier.align(Alignment.End)
                 ) {
-                    Text("Guardar")
+                    Text(stringResource(R.string.task_save))
                 }
             }
         }
