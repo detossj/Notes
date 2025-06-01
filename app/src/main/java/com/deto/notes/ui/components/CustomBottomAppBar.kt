@@ -59,7 +59,8 @@ fun CustomBottomAppBar(Navigation: NavController) {
                     Icon(
                         painterResource(R.drawable.article_24px),
                         contentDescription = "Notas",
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(30.dp),
+                        tint = if(currentRoute == HomePage::class.qualifiedName){ Color.White } else Color.Gray
                     )
 
                     Text("Notas")
@@ -84,7 +85,8 @@ fun CustomBottomAppBar(Navigation: NavController) {
                     Icon(
                         painterResource(R.drawable.assignment_turned_in_24px),
                         contentDescription = "Tareas",
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.size(30.dp),
+                        tint = if(currentRoute == SecondPage::class.qualifiedName){ Color.White } else Color.Gray
                     )
 
                     Text("Tareas")
