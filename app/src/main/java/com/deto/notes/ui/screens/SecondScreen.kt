@@ -17,9 +17,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.deto.notes.R
 import com.deto.notes.data.Task
 import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.components.CustomBottomAppBar
@@ -48,7 +50,7 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
     CustomModalBottomSheet(
         viewModel.newTaskUiState.newTask.title,
         { viewModel.updateUiState(viewModel.newTaskUiState.newTask.copy(title = it)) },
-        "Nueva Tarea",
+        stringResource(R.string.task_add_placeholder),
         showBottomSheet,
         scope,
         bottomSheetState,
