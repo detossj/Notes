@@ -90,7 +90,8 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
                         showBottomSheet = true
                         bottomSheetState.show()
                     }
-                }
+                },
+                { task -> viewModel.toggleTaskCompletion(task)}
             )
         }
     }
