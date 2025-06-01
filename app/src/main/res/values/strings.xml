@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Notas</string>
+    <string name="search_placeholder">Buscar notas</string>
+    <string name="title_notes">Notas</string>
+    <string name="title_tasks">Tareas</string>
+    <string name="task_add_placeholder">Nueva Tarea</string>
+    <string name="task_save">Guardar</string>
+    <string name="newnote_title_placeholder">Título</string>
+    <string name="newnote_content_placeholder">Empiece a escribir</string>
+
 </resources>
