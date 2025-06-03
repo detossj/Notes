@@ -22,14 +22,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.deto.notes.R
-import com.deto.notes.data.Task
 import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.components.CustomBottomAppBar
 import com.deto.notes.ui.components.CustomFloatingActionButtonSecond
 import com.deto.notes.ui.components.CustomModalBottomSheet
 import com.deto.notes.ui.components.CustomTopAppBar
 import com.deto.notes.ui.components.SearchTask
-import com.deto.notes.ui.components.TaskList
 import com.deto.tasks.ui.screens.SecondViewModel
 import com.deto.tasks.ui.screens.toItemDetails
 import kotlinx.coroutines.launch
