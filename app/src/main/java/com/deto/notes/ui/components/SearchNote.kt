@@ -1,5 +1,6 @@
 package com.deto.notes.ui.components
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,6 +13,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +29,19 @@ import com.deto.notes.data.Note
 fun SearchNote( scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, notes: List<Note>) {
 
     var notesFilter by remember { mutableStateOf("") }
+    var selected by remember { mutableStateOf(setOf<Int>()) }
+    var modeSelection by remember { mutableStateOf(false) }
+
+    BackHandler(enabled = modeSelection) {
+        selected = emptySet()
+        modeSelection = false
+    }
+
+    LaunchedEffect(selected) {
+        if (selected.isEmpty()) {
+            modeSelection = false
+        }
+    }
 
     LazyColumn(
         state = scrollState,
@@ -52,10 +67,36 @@ fun SearchNote( scrollState: LazyListState, navController: NavController, innerP
 
 
     }
+    fun toggleSelection(id: Int) {
+        selected = if (selected.contains(id)) {
+            selected - id
+        } else {
+            selected + id
+        }
+        if (selected.isEmpty()) modeSelection = false
+    }
+
+    fun initSelection(id: Int) {
+        modeSelection = true
+        selected = setOf(id)
+    }
+
+
 
     var notesListFilter = notes.filter {
         it.title.contains(notesFilter, ignoreCase = true) || it.content.contains(notesFilter, ignoreCase = true)
     }
 
-    NoteList(navController, innerPadding, notesListFilter,notesFilter)
+    NoteList(
+        navController,
+        innerPadding,
+        notesListFilter,
+        notesFilter,
+        selected,
+        modeSelection,
+        { toggleSelection(it) },
+        { initSelection(it) }
+    )
 }
+
+
