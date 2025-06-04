@@ -1,5 +1,6 @@
 package com.deto.notes.ui.components
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,6 +13,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +29,19 @@ import com.deto.notes.data.Task
 fun SearchTask(scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, tasks: List<Task>, onTaskClick: (Task) -> Unit, onTaskCheckChange: (Task) -> Unit){
 
     var tasksFilter by remember { mutableStateOf("") }
+    var selected by remember { mutableStateOf(setOf<Int>()) }
+    var modeSelection by remember { mutableStateOf(false) }
+
+    BackHandler(enabled = modeSelection) {
+        selected = emptySet()
+        modeSelection = false
+    }
+
+    LaunchedEffect(selected) {
+        if (selected.isEmpty()) {
+            modeSelection = false
+        }
+    }
 
     LazyColumn(
         state = scrollState,
@@ -53,9 +68,34 @@ fun SearchTask(scrollState: LazyListState, navController: NavController, innerPa
 
     }
 
+    fun toggleSelection(id: Int) {
+        selected = if (selected.contains(id)) {
+            selected - id
+        } else {
+            selected + id
+        }
+        if (selected.isEmpty()) modeSelection = false
+    }
+
+    fun initSelection(id: Int) {
+        modeSelection = true
+        selected = setOf(id)
+    }
+
     var taskListFilter = tasks.filter {
         it.title.contains(tasksFilter, ignoreCase = true)
     }
 
-    TaskList(navController,innerPadding,taskListFilter,tasksFilter,onTaskClick,onTaskCheckChange)
+    TaskList(
+        navController,
+        innerPadding,
+        taskListFilter,
+        tasksFilter,
+        onTaskClick,
+        onTaskCheckChange,
+        selected,
+        modeSelection,
+        { toggleSelection(it) },
+        { initSelection(it) }
+    )
 }
