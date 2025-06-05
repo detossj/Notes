@@ -21,25 +21,27 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.deto.notes.R
 import com.deto.notes.data.Note
+import com.deto.notes.ui.AppViewModelProvider
+import com.deto.notes.ui.screens.HomeViewModel
 
 @Composable
-fun SearchNote( scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, notes: List<Note>) {
+fun SearchNote( scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, notes: List<Note>, modeSelection: Boolean, onModeSelectionChange: (Boolean) -> Unit, viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)) {
 
     var notesFilter by remember { mutableStateOf("") }
     var selected by remember { mutableStateOf(setOf<Int>()) }
-    var modeSelection by remember { mutableStateOf(false) }
 
     BackHandler(enabled = modeSelection) {
         selected = emptySet()
-        modeSelection = false
+        onModeSelectionChange(false)
     }
 
     LaunchedEffect(selected) {
         if (selected.isEmpty()) {
-            modeSelection = false
+            onModeSelectionChange(false)
         }
     }
 
@@ -73,11 +75,11 @@ fun SearchNote( scrollState: LazyListState, navController: NavController, innerP
         } else {
             selected + id
         }
-        if (selected.isEmpty()) modeSelection = false
+        if (selected.isEmpty()) onModeSelectionChange(false)
     }
 
     fun initSelection(id: Int) {
-        modeSelection = true
+        onModeSelectionChange(true)
         selected = setOf(id)
     }
 
