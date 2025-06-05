@@ -29,20 +29,13 @@ import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.screens.HomeViewModel
 
 @Composable
-fun SearchNote( scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, notes: List<Note>, modeSelection: Boolean, onModeSelectionChange: (Boolean) -> Unit, viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)) {
+fun SearchNote( scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, notes: List<Note>, modeSelection: Boolean, onModeSelectionChange: (Boolean) -> Unit, selectedNotes: List<Int>, setSelectedNotes: (List<Int>) -> Unit) {
 
     var notesFilter by remember { mutableStateOf("") }
-    var selected by remember { mutableStateOf(setOf<Int>()) }
 
     BackHandler(enabled = modeSelection) {
-        selected = emptySet()
+        setSelectedNotes(emptyList())
         onModeSelectionChange(false)
-    }
-
-    LaunchedEffect(selected) {
-        if (selected.isEmpty()) {
-            onModeSelectionChange(false)
-        }
     }
 
     LazyColumn(
@@ -70,17 +63,18 @@ fun SearchNote( scrollState: LazyListState, navController: NavController, innerP
 
     }
     fun toggleSelection(id: Int) {
-        selected = if (selected.contains(id)) {
-            selected - id
+        val newSelected = if (selectedNotes.contains(id)) {
+            selectedNotes - id
         } else {
-            selected + id
+            selectedNotes + id
         }
-        if (selected.isEmpty()) onModeSelectionChange(false)
+        setSelectedNotes(newSelected)
+        if (newSelected.isEmpty()) onModeSelectionChange(false)
     }
 
     fun initSelection(id: Int) {
         onModeSelectionChange(true)
-        selected = setOf(id)
+        setSelectedNotes(listOf(id))
     }
 
 
@@ -94,7 +88,7 @@ fun SearchNote( scrollState: LazyListState, navController: NavController, innerP
         innerPadding,
         notesListFilter,
         notesFilter,
-        selected,
+        selectedNotes,
         modeSelection,
         { toggleSelection(it) },
         { initSelection(it) }
