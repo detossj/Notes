@@ -17,6 +17,8 @@ import androidx.navigation.NavController
 import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.components.CustomTopAppBar
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import com.deto.notes.ui.components.CustomBottomAppBar
 import com.deto.notes.ui.components.CustomFloatingActionButtonHome
 import com.deto.notes.ui.components.SearchNote
@@ -29,13 +31,21 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
     val noteList by viewModel.noteList.collectAsState(initial = emptyList())
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val scrollState = rememberLazyListState()
+    val (modeSelection, setModeSelection) = remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             CustomTopAppBar(scrollBehavior,"Notas")
         },
         bottomBar = {
-            CustomBottomAppBar(Navigation)
+            if(!modeSelection) {
+                CustomBottomAppBar(Navigation)
+            }
+            else
+            {
+
+            }
+
         },
         floatingActionButton = {
             CustomFloatingActionButtonHome(Navigation)
@@ -44,7 +54,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
     ) { innerPadding ->
 
         Column(modifier = Modifier.padding(innerPadding)) {
-            SearchNote(scrollState,Navigation, PaddingValues(0.dp), noteList)
+            SearchNote(scrollState,Navigation, PaddingValues(0.dp), noteList, modeSelection, setModeSelection)
 
         }
     }
