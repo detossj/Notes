@@ -5,7 +5,8 @@
     <string name="title_tasks">Tareas</string>
     <string name="task_add_placeholder">Nueva Tarea</string>
     <string name="task_save">Guardar</string>
-    <string name="newnote_title_placeholder">Título</string>
-    <string name="newnote_content_placeholder">Empiece a escribir</string>
+    <string name="newNote_title_placeholder">Título</string>
+    <string name="newNote_content_placeholder">Empiece a escribir</string>
+    <string name="customBottomAppBarDelete_text">Eliminar</string>
 
 </resources>
