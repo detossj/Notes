@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.deto.notes.ui.components.CustomBottomAppBar
+import com.deto.notes.ui.components.CustomBottomAppBarDelete
 import com.deto.notes.ui.components.CustomFloatingActionButtonHome
 import com.deto.notes.ui.components.SearchNote
 
@@ -32,6 +33,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val scrollState = rememberLazyListState()
     val (modeSelection, setModeSelection) = remember { mutableStateOf(false) }
+    val (selectedNotes,setSelectedNotes) = remember { mutableStateOf<List<Int>>(emptyList()) }
 
     Scaffold(
         topBar = {
@@ -43,7 +45,11 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
             }
             else
             {
-
+                CustomBottomAppBarDelete(Navigation,{
+                    viewModel.deleteNoteById(selectedNotes)
+                    setSelectedNotes(emptyList())
+                    setModeSelection(false)
+                })
             }
 
         },
@@ -54,7 +60,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
     ) { innerPadding ->
 
         Column(modifier = Modifier.padding(innerPadding)) {
-            SearchNote(scrollState,Navigation, PaddingValues(0.dp), noteList, modeSelection, setModeSelection)
+            SearchNote(scrollState,Navigation, PaddingValues(0.dp), noteList, modeSelection, setModeSelection,selectedNotes,setSelectedNotes)
 
         }
     }
