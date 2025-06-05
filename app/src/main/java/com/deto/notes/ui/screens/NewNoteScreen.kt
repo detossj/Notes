@@ -110,7 +110,7 @@ fun NewNoteScreen(Navigation: NavController, noteId: Int? = null, viewModel: New
                    CustomOutlinedTextField(
                        viewModel.newNoteUiState.newNote.title,
                        { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(title = it)) },
-                       stringResource(R.string.newnote_title_placeholder),
+                       stringResource(R.string.newNote_title_placeholder),
                        24
                    )
 
@@ -127,7 +127,7 @@ fun NewNoteScreen(Navigation: NavController, noteId: Int? = null, viewModel: New
                    CustomOutlinedTextField(
                        viewModel.newNoteUiState.newNote.content,
                        { viewModel.updateUiState(viewModel.newNoteUiState.newNote.copy(content = it)) },
-                       stringResource(R.string.newnote_content_placeholder),
+                       stringResource(R.string.newNote_content_placeholder),
                        16
                    )
                }
