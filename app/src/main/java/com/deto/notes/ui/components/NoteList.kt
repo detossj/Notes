@@ -35,7 +35,7 @@ import com.deto.notes.R
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: List<Note>, notesFilter: String, selected: Set<Int>, modeSelection: Boolean, onToggleSelection: (Int) -> Unit, onLongPress: (Int) -> Unit) {
+fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: List<Note>, notesFilter: String, selectedNotes: List<Int>, modeSelection: Boolean, onToggleSelection: (Int) -> Unit, onLongPress: (Int) -> Unit) {
 
 
     Column(
@@ -105,7 +105,7 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
                         )
 
                         if (modeSelection) {
-                            if (selected.contains(note.id)) {
+                            if (selectedNotes.contains(note.id)) {
                                 Icon(
                                     imageVector = Icons.Default.CheckCircle,
                                     contentDescription = null,
