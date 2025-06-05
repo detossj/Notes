@@ -19,6 +19,8 @@ import com.deto.notes.ui.components.CustomTopAppBar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.deto.notes.ui.components.CustomAlertDialog
 import com.deto.notes.ui.components.CustomBottomAppBar
 import com.deto.notes.ui.components.CustomBottomAppBarDelete
 import com.deto.notes.ui.components.CustomFloatingActionButtonHome
@@ -34,6 +36,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
     val scrollState = rememberLazyListState()
     val (modeSelection, setModeSelection) = remember { mutableStateOf(false) }
     val (selectedNotes,setSelectedNotes) = remember { mutableStateOf<List<Int>>(emptyList()) }
+    var showDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -46,9 +49,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
             else
             {
                 CustomBottomAppBarDelete(Navigation,{
-                    viewModel.deleteNoteById(selectedNotes)
-                    setSelectedNotes(emptyList())
-                    setModeSelection(false)
+                    showDialog = true
                 })
             }
 
@@ -63,6 +64,17 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
             SearchNote(scrollState,Navigation, PaddingValues(0.dp), noteList, modeSelection, setModeSelection,selectedNotes,setSelectedNotes)
 
         }
+
+        CustomAlertDialog(showDialog,
+            { showDialog = false },
+            {
+                viewModel.deleteNoteById(selectedNotes)
+                setSelectedNotes(emptyList())
+                setModeSelection(false)
+            },
+            selectedNotes.size,
+            "Eliminar notas",
+        )
     }
 
 }
