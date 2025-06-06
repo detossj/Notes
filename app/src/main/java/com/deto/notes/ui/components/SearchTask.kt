@@ -26,21 +26,24 @@ import com.deto.notes.R
 import com.deto.notes.data.Task
 
 @Composable
-fun SearchTask(scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, tasks: List<Task>, onTaskClick: (Task) -> Unit, onTaskCheckChange: (Task) -> Unit){
+fun SearchTask(
+    scrollState: LazyListState,
+    navController: NavController,
+    innerPadding: PaddingValues,
+    tasks: List<Task>,
+    onTaskClick: (Task) -> Unit,
+    onTaskCheckChange: (Task) -> Unit,
+    modeSelection: Boolean,
+    onModeSelectionChange: (Boolean) -> Unit,
+    selectedTasks: List<Int>,
+    setSelectedTasks: (List<Int>) -> Unit
+){
 
     var tasksFilter by remember { mutableStateOf("") }
-    var selected by remember { mutableStateOf(setOf<Int>()) }
-    var modeSelection by remember { mutableStateOf(false) }
 
     BackHandler(enabled = modeSelection) {
-        selected = emptySet()
-        modeSelection = false
-    }
-
-    LaunchedEffect(selected) {
-        if (selected.isEmpty()) {
-            modeSelection = false
-        }
+        setSelectedTasks(emptyList())
+        onModeSelectionChange(false)
     }
 
     LazyColumn(
@@ -69,17 +72,18 @@ fun SearchTask(scrollState: LazyListState, navController: NavController, innerPa
     }
 
     fun toggleSelection(id: Int) {
-        selected = if (selected.contains(id)) {
-            selected - id
+        val newSelected = if (selectedTasks.contains(id)) {
+            selectedTasks - id
         } else {
-            selected + id
+            selectedTasks + id
         }
-        if (selected.isEmpty()) modeSelection = false
+        setSelectedTasks(newSelected)
+        if (selectedTasks.isEmpty()) onModeSelectionChange(false)
     }
 
     fun initSelection(id: Int) {
-        modeSelection = true
-        selected = setOf(id)
+        onModeSelectionChange(true)
+        setSelectedTasks(listOf(id))
     }
 
     var taskListFilter = tasks.filter {
@@ -93,7 +97,7 @@ fun SearchTask(scrollState: LazyListState, navController: NavController, innerPa
         tasksFilter,
         onTaskClick,
         onTaskCheckChange,
-        selected,
+        selectedTasks,
         modeSelection,
         { toggleSelection(it) },
         { initSelection(it) }
