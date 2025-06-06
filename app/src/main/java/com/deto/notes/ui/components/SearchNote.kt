@@ -29,7 +29,16 @@ import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.screens.HomeViewModel
 
 @Composable
-fun SearchNote( scrollState: LazyListState, navController: NavController, innerPadding: PaddingValues, notes: List<Note>, modeSelection: Boolean, onModeSelectionChange: (Boolean) -> Unit, selectedNotes: List<Int>, setSelectedNotes: (List<Int>) -> Unit) {
+fun SearchNote(
+    scrollState: LazyListState,
+    navController: NavController,
+    innerPadding: PaddingValues,
+    notes: List<Note>,
+    modeSelection: Boolean,
+    onModeSelectionChange: (Boolean) -> Unit,
+    selectedNotes: List<Int>,
+    setSelectedNotes: (List<Int>) -> Unit
+) {
 
     var notesFilter by remember { mutableStateOf("") }
 
