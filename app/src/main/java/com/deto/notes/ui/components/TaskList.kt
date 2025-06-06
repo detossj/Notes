@@ -37,10 +37,7 @@ import com.deto.notes.data.Task
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList: List<Task>, taskFilter: String, onTaskClick: (Task)-> Unit, onTaskCheckChange: (Task) -> Unit,selected: Set<Int>, modeSelection: Boolean, onToggleSelection: (Int) -> Unit, onLongPress: (Int) -> Unit) {
-
-
-
+fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList: List<Task>, taskFilter: String, onTaskClick: (Task)-> Unit, onTaskCheckChange: (Task) -> Unit,selected: List<Int>, modeSelection: Boolean, onToggleSelection: (Int) -> Unit, onLongPress: (Int) -> Unit) {
 
     Column(
         modifier = Modifier
