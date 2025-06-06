@@ -8,7 +8,7 @@ interface TaskRepository {
 
     suspend fun updateTask(task: Task)
 
-    suspend fun deleteTask(task: Task)
+    suspend fun deleteTaskById(id: Int)
 
     fun getAllTasksStream(): Flow<List<Task>>
 }
