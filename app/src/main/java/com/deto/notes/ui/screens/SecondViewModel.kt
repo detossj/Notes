@@ -52,6 +52,14 @@ class SecondViewModel(private val taskRepository: TaskRepository) : ViewModel() 
         }
     }
 
+    fun deleteTaskById(selected: List<Int>){
+        viewModelScope.launch {
+            for (id in selected){
+                taskRepository.deleteTaskById(id)
+            }
+        }
+    }
+
 }
 data class NewTaskUIState(
     val newTask: NewTask = NewTask(),
