@@ -23,7 +23,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.deto.notes.R
 import com.deto.notes.ui.AppViewModelProvider
+import com.deto.notes.ui.components.CustomAlertDialog
 import com.deto.notes.ui.components.CustomBottomAppBar
+import com.deto.notes.ui.components.CustomBottomAppBarDelete
 import com.deto.notes.ui.components.CustomFloatingActionButtonSecond
 import com.deto.notes.ui.components.CustomModalBottomSheet
 import com.deto.notes.ui.components.CustomTopAppBar
@@ -44,6 +46,9 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
     val scope = rememberCoroutineScope()
     val scrollState = rememberLazyListState()
     var showBottomSheet by remember { mutableStateOf(false) }
+    val (modeSelection, setModeSelection) = remember { mutableStateOf(false) }
+    val (selectedTasks,setSelectedTasks) = remember { mutableStateOf<List<Int>>(emptyList()) }
+    var showDialog by remember { mutableStateOf(false) }
 
     CustomModalBottomSheet(
         viewModel.newTaskUiState.newTask.title,
@@ -63,7 +68,15 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
             CustomTopAppBar(scrollBehavior, "Tareas")
         },
         bottomBar = {
-            CustomBottomAppBar(Navigation)
+            if(!modeSelection) {
+                CustomBottomAppBar(Navigation)
+            }
+            else
+            {
+                CustomBottomAppBarDelete(Navigation,{
+                    showDialog = true
+                })
+            }
         },
         floatingActionButton = {
             CustomFloatingActionButtonSecond(
@@ -91,8 +104,22 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
                         bottomSheetState.show()
                     }
                 },
-                { task -> viewModel.toggleTaskCompletion(task)}
+                { task -> viewModel.toggleTaskCompletion(task)},
+                modeSelection,
+                setModeSelection,
+                selectedTasks,
+                setSelectedTasks
             )
         }
+        CustomAlertDialog(showDialog,
+            { showDialog = false },
+            {
+                viewModel.deleteTaskById(selectedTasks)
+                setSelectedTasks(emptyList())
+                setModeSelection(false)
+            },
+            selectedTasks.size,
+            "Eliminar tareas",
+        )
     }
 }
