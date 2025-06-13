@@ -32,6 +32,8 @@ import androidx.navigation.NavController
 import com.deto.notes.NotePage
 import com.deto.notes.data.Note
 import com.deto.notes.R
+import com.deto.notes.ui.theme.onPrimaryContainerLight
+import com.deto.notes.ui.theme.onPrimaryLight
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -91,16 +93,16 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
 
                         Text(
                             text = highlightMatch(titlePreview, notesFilter, Color.Yellow),
-                            color = Color.White,
+                            color = onPrimaryLight,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
                             text = highlightMatch(contentPreview, notesFilter, Color.Yellow),
-                            color = Color.Gray,
+                            color = onPrimaryContainerLight,
                         )
                         Text(
                             text = note.date,
-                            color = Color.Gray,
+                            color = onPrimaryContainerLight,
                             fontSize = 14.sp
                         )
 
@@ -116,7 +118,7 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
                                 Icon(
                                     painter = painterResource(R.drawable.radio_button_unchecked_24dp_1f1f1f_fill0_wght400_grad0_opsz24),
                                     contentDescription = null,
-                                    tint = Color.Gray,
+                                    tint = onPrimaryContainerLight,
                                     modifier = Modifier.align(Alignment.End)
                                 )
                             }

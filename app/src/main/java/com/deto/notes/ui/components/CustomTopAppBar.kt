@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.sp
+import com.deto.notes.ui.theme.onPrimaryLight
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -17,7 +18,8 @@ fun CustomTopAppBar(scrollBehavior : TopAppBarScrollBehavior, title: String) {
         title = {
             Text(
                 text = title,
-                fontSize = 32.sp
+                fontSize = 32.sp,
+                color = onPrimaryLight
             )},
         scrollBehavior = scrollBehavior
     )

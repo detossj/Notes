@@ -28,10 +28,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.deto.notes.NotePage
 import com.deto.notes.R
 import com.deto.notes.data.Task
-
+import com.deto.notes.ui.theme.onPrimaryContainerLight
+import com.deto.notes.ui.theme.onPrimaryLight
 
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -83,7 +83,7 @@ fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList
                             },
                             colors = if(task.completed) {
                                 CheckboxDefaults.colors(
-                                    checkedColor = Color.Gray,
+                                    checkedColor = onPrimaryContainerLight,
                                     checkmarkColor = Color.DarkGray,
                                     uncheckedColor = Color.LightGray
                                 )
@@ -96,7 +96,7 @@ fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList
                             text = highlightMatch(task.title, taskFilter, Color.Yellow),
                             modifier = Modifier.padding(start = 8.dp),
                             fontWeight = FontWeight.Bold,
-                            color = if(task.completed) Color.Gray else Color.White
+                            color = if(task.completed) onPrimaryContainerLight else onPrimaryLight
                         )
 
                         Column(

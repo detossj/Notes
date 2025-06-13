@@ -23,6 +23,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.deto.notes.HomePage
 import com.deto.notes.SecondPage
+import com.deto.notes.ui.theme.onPrimaryContainerLight
+import com.deto.notes.ui.theme.onPrimaryLight
 
 @Composable
 fun CustomBottomAppBar(Navigation: NavController) {
@@ -47,9 +49,9 @@ fun CustomBottomAppBar(Navigation: NavController) {
                 enabled = currentRoute != HomePage::class.qualifiedName,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
-                    contentColor = Color.White,
+                    contentColor = onPrimaryLight,
                     disabledContainerColor = Color.Transparent,
-                    disabledContentColor = Color.White
+                    disabledContentColor = onPrimaryLight
                 )
             ) {
                 Column(
@@ -59,7 +61,7 @@ fun CustomBottomAppBar(Navigation: NavController) {
                         painterResource(R.drawable.article_24px),
                         contentDescription = "Notas",
                         modifier = Modifier.size(30.dp),
-                        tint = if(currentRoute == HomePage::class.qualifiedName){ Color.White } else Color.Gray
+                        tint = if(currentRoute == HomePage::class.qualifiedName){ onPrimaryLight } else onPrimaryContainerLight
                     )
 
                     Text(stringResource(R.string.title_notes))
@@ -73,9 +75,9 @@ fun CustomBottomAppBar(Navigation: NavController) {
                 enabled = currentRoute != SecondPage::class.qualifiedName,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Transparent,
-                    contentColor = Color.White,
+                    contentColor = onPrimaryLight,
                     disabledContainerColor = Color.Transparent,
-                    disabledContentColor = Color.White
+                    disabledContentColor = onPrimaryLight
                 )
             ) {
                 Column(
@@ -85,7 +87,7 @@ fun CustomBottomAppBar(Navigation: NavController) {
                         painterResource(R.drawable.assignment_turned_in_24px),
                         contentDescription = "Tareas",
                         modifier = Modifier.size(30.dp),
-                        tint = if(currentRoute == SecondPage::class.qualifiedName){ Color.White } else Color.Gray
+                        tint = if(currentRoute == SecondPage::class.qualifiedName){ onPrimaryLight } else Color.Gray
                     )
 
                     Text(stringResource(R.string.title_tasks))
