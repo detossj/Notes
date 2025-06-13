@@ -47,7 +47,7 @@ data class NewNote(
     val id: Int = 0,
     val title: String = "",
     val content: String = "",
-    val date: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("d 'de' MMMM h:mm a", Locale("es", "ES")))
+    val date: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("d 'de' MMMM", Locale("es", "ES")))
 )
 
 fun NewNote.toElement(): Note = Note(
