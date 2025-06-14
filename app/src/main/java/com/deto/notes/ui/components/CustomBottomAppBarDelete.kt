@@ -20,12 +20,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.deto.notes.R
+import com.deto.notes.ui.theme.onPrimaryContainerDark
 
 @Composable
 fun CustomBottomAppBarDelete(Navigation: NavController, onClick: () -> Unit) {
     BottomAppBar(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        containerColor = onPrimaryContainerDark
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),

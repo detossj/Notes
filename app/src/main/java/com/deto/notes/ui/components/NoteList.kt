@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,8 +33,10 @@ import androidx.navigation.NavController
 import com.deto.notes.NotePage
 import com.deto.notes.data.Note
 import com.deto.notes.R
+import com.deto.notes.ui.theme.errorContainerLight
 import com.deto.notes.ui.theme.onPrimaryContainerLight
 import com.deto.notes.ui.theme.onPrimaryLight
+import com.deto.notes.ui.theme.surfaceDark
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -69,7 +72,10 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
                             onLongClick = {
                                 onLongPress(note.id)
                             }
-                        )
+                        ),
+                    colors = CardDefaults.cardColors(
+                        containerColor = surfaceDark
+                    )
                 ) {
                     Column(
                         modifier = Modifier
@@ -92,12 +98,12 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
                         }
 
                         Text(
-                            text = highlightMatch(titlePreview, notesFilter, Color.Yellow),
+                            text = highlightMatch(titlePreview, notesFilter, errorContainerLight),
                             color = onPrimaryLight,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = highlightMatch(contentPreview, notesFilter, Color.Yellow),
+                            text = highlightMatch(contentPreview, notesFilter, errorContainerLight),
                             color = onPrimaryContainerLight,
                         )
                         Text(

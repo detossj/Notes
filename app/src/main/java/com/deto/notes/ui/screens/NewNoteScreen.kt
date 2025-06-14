@@ -18,6 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -33,6 +34,7 @@ import androidx.navigation.NavController
 import com.deto.notes.R
 import com.deto.notes.ui.AppViewModelProvider
 import com.deto.notes.ui.components.CustomOutlinedTextField
+import com.deto.notes.ui.theme.surfaceDark
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -89,9 +91,13 @@ fun NewNoteScreen(Navigation: NavController, noteId: Int? = null, viewModel: New
                             contentDescription = "Back"
                         )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = surfaceDark
+                )
             )
-        }
+        },
+        containerColor = surfaceDark
     ) { innerPadding ->
 
         Column(

@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,6 +33,7 @@ import com.deto.notes.R
 import com.deto.notes.data.Task
 import com.deto.notes.ui.theme.onPrimaryContainerLight
 import com.deto.notes.ui.theme.onPrimaryLight
+import com.deto.notes.ui.theme.surfaceDark
 
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -68,7 +70,10 @@ fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList
                             onLongClick = {
                                 onLongPress(task.id)
                             }
-                        )
+                        ),
+                    colors = CardDefaults.cardColors(
+                        containerColor = surfaceDark
+                    )
                 ) {
                     Row(
                         modifier = Modifier

@@ -30,6 +30,7 @@ import com.deto.notes.ui.components.CustomFloatingActionButtonSecond
 import com.deto.notes.ui.components.CustomModalBottomSheet
 import com.deto.notes.ui.components.CustomTopAppBar
 import com.deto.notes.ui.components.SearchTask
+import com.deto.notes.ui.theme.onPrimaryDark
 import com.deto.tasks.ui.screens.SecondViewModel
 import com.deto.tasks.ui.screens.toItemDetails
 import kotlinx.coroutines.launch
@@ -89,7 +90,8 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
                 }
             )
         },
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        containerColor = onPrimaryDark
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
             SearchTask(

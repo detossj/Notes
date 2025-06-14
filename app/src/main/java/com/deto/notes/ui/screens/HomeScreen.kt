@@ -25,6 +25,9 @@ import com.deto.notes.ui.components.CustomBottomAppBar
 import com.deto.notes.ui.components.CustomBottomAppBarDelete
 import com.deto.notes.ui.components.CustomFloatingActionButtonHome
 import com.deto.notes.ui.components.SearchNote
+import com.deto.notes.ui.theme.onPrimaryDark
+import com.deto.notes.ui.theme.onPrimaryLight
+import com.deto.notes.ui.theme.primaryLight
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,7 +60,8 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
         floatingActionButton = {
             CustomFloatingActionButtonHome(Navigation)
         },
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        containerColor = onPrimaryDark
     ) { innerPadding ->
 
         Column(modifier = Modifier.padding(innerPadding)) {

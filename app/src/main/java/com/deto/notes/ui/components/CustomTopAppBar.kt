@@ -4,9 +4,11 @@ package com.deto.notes.ui.components
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.sp
+import com.deto.notes.ui.theme.onPrimaryDark
 import com.deto.notes.ui.theme.onPrimaryLight
 
 
@@ -21,7 +23,10 @@ fun CustomTopAppBar(scrollBehavior : TopAppBarScrollBehavior, title: String) {
                 fontSize = 32.sp,
                 color = onPrimaryLight
             )},
-        scrollBehavior = scrollBehavior
+        scrollBehavior = scrollBehavior,
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = onPrimaryDark
+        )
     )
 
 

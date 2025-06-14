@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.deto.notes.HomePage
 import com.deto.notes.SecondPage
+import com.deto.notes.ui.theme.onPrimaryContainerDark
 import com.deto.notes.ui.theme.onPrimaryContainerLight
 import com.deto.notes.ui.theme.onPrimaryLight
 
@@ -34,7 +35,8 @@ fun CustomBottomAppBar(Navigation: NavController) {
 
     BottomAppBar(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        containerColor = onPrimaryContainerDark
     ) {
         Row (
             modifier = Modifier.fillMaxWidth(),

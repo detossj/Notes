@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.deto.notes.R
 import com.deto.notes.ui.AppViewModelProvider
+import com.deto.notes.ui.theme.surfaceDark
 import com.deto.tasks.ui.screens.SecondViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -39,7 +40,8 @@ fun CustomModalBottomSheet(value: String, onValueChange: (String) -> Unit, place
                 }
             },
             sheetState = bottomSheetState,
-            dragHandle = null
+            dragHandle = null,
+            containerColor = surfaceDark
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 CustomOutlinedTextField(
