@@ -74,7 +74,7 @@ fun SecondScreen(Navigation: NavController, viewModel: SecondViewModel = viewMod
             }
             else
             {
-                CustomBottomAppBarDelete(Navigation,{
+                CustomBottomAppBarDelete({
                     showDialog = true
                 })
             }

@@ -90,7 +90,6 @@ fun SearchTask(
     }
 
     TaskList(
-        navController,
         innerPadding,
         taskListFilter,
         tasksFilter,

@@ -38,7 +38,7 @@ import com.deto.notes.ui.theme.surfaceDark
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun TaskList(navController: NavController, innerPadding: PaddingValues, taskList: List<Task>, taskFilter: String, onTaskClick: (Task)-> Unit, onTaskCheckChange: (Task) -> Unit,selected: List<Int>, modeSelection: Boolean, onToggleSelection: (Int) -> Unit, onLongPress: (Int) -> Unit) {
+fun TaskList( innerPadding: PaddingValues, taskList: List<Task>, taskFilter: String, onTaskClick: (Task)-> Unit, onTaskCheckChange: (Task) -> Unit,selected: List<Int>, modeSelection: Boolean, onToggleSelection: (Int) -> Unit, onLongPress: (Int) -> Unit) {
 
     Column(
         modifier = Modifier

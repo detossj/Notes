@@ -51,7 +51,7 @@ fun HomeScreen(Navigation: NavController, viewModel: HomeViewModel = viewModel(f
             }
             else
             {
-                CustomBottomAppBarDelete(Navigation,{
+                CustomBottomAppBarDelete({
                     showDialog = true
                 })
             }

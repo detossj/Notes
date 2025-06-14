@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun CustomOutlinedTextField(value: String, onValueChange: (String) -> Unit, placeholder: String, fontSize: Int, modifier: Modifier = Modifier) {
+fun CustomOutlinedTextField(value: String, onValueChange: (String) -> Unit, placeholder: String, fontSize: Int) {
 
     OutlinedTextField(
         value = value,
