@@ -98,7 +98,7 @@ fun TaskList( innerPadding: PaddingValues, taskList: List<Task>, taskFilter: Str
                         )
 
                         Text(
-                            text = highlightMatch(task.title, taskFilter, Color.Yellow),
+                            text = highlightMatch(task.title, taskFilter, Color(255, 183, 17)),
                             modifier = Modifier.padding(start = 8.dp),
                             fontWeight = FontWeight.Bold,
                             color = if(task.completed) onPrimaryContainerLight else onPrimaryLight
@@ -112,7 +112,7 @@ fun TaskList( innerPadding: PaddingValues, taskList: List<Task>, taskFilter: Str
                                     Icon(
                                         imageVector = Icons.Default.CheckCircle,
                                         contentDescription = null,
-                                        tint = Color(0xFFFFC107),
+                                        tint = Color(255, 183, 17),
                                         modifier = Modifier.align(Alignment.End)
                                     )
                                 } else {

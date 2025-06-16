@@ -98,12 +98,12 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
                         }
 
                         Text(
-                            text = highlightMatch(titlePreview, notesFilter, errorContainerLight),
+                            text = highlightMatch(titlePreview, notesFilter, Color(255, 183, 17)),
                             color = onPrimaryLight,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = highlightMatch(contentPreview, notesFilter, errorContainerLight),
+                            text = highlightMatch(contentPreview, notesFilter, Color(255, 183, 17)),
                             color = onPrimaryContainerLight,
                         )
                         Text(
@@ -117,7 +117,7 @@ fun NoteList(navController: NavController, innerPadding: PaddingValues, notes: L
                                 Icon(
                                     imageVector = Icons.Default.CheckCircle,
                                     contentDescription = null,
-                                    tint = Color(0xFFFFC107),
+                                    tint = Color(255, 183, 17),
                                     modifier = Modifier.align(Alignment.End)
                                 )
                             } else {
